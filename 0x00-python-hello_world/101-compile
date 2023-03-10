@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Get the filename from the environment variable
+filename="${PYFILE}"
+
+# Compile the Python script
+python3 -m py_compile "${filename}"
+
+# Rename the compiled file to add the "c" extension
+mv "${filename}__pycache__/${filename%.*}.cpython-*.pyc" "${filename%.*}c"
+
+# Clean up the pycache directory
+rm -rf "${filename}__pycache__"
